@@ -3,9 +3,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.authtoken.models import Token
-from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import authenticate
-from rest_framework.views import APIView
 from .serializers import RegisterSerializer
 
 
@@ -41,13 +39,3 @@ def login(request):
         return Response({
             'error': 'Invalid Credentials'
         }, status=status.HTTP_400_BAD_REQUEST)
-    
-    # 🔹 Protected API Example
-class ProfileView(APIView):
-    permission_classes = [IsAuthenticated]
-
-    def get(self, request):
-        return Response({
-            "username": request.user.username,
-            "email": request.user.email
-        })
