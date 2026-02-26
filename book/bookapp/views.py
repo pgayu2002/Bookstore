@@ -28,7 +28,7 @@ def login(request):
     password = request.data.get('password')
 
     user = authenticate(username=username, password=password)
-
+    breakpoint()
     if user:
         token, created = Token.objects.get_or_create(user=user)
         return Response({
